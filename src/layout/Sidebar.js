@@ -17,6 +17,11 @@ export default function Sidebar() {
       text: 'Use Context',
       isActive: false,
     },
+    {
+      link: 'use-memo',
+      text: 'Use Memo',
+      isActive: false,
+    },
   ]);
 
   const setActiveMenu = (propMenu) => {
