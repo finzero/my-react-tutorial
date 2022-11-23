@@ -61,3 +61,12 @@
     display: none;
   }
 }
+
+.light{
+
+}
+
+.dark{
+  background: black;
+  color: white;
+}

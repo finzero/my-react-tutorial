@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import Parent from '../components/Parent';
+import RandomComp from '../components/RandomComp';
+
+export const ThemeContext = createContext('');
 
 function UseContext() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   return (
-    <div>
+    <div className={theme}>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+
       <strong>Use Context</strong>
       <hr />
       <ol>
@@ -14,7 +23,10 @@ function UseContext() {
         </li>
         <li>I want grandchild component render the theme props</li>
       </ol>
-      <Parent />
+      <ThemeContext.Provider value={theme}>
+        <Parent />
+        <RandomComp />
+      </ThemeContext.Provider>
     </div>
   );
 }
