@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useReducer } from 'react';
+import foodReducer from '../reducers/foodReducer';
+import FoodAction from '../actions/foodAction';
 
 const OrderList = ({ order, removeOrder, editOrder }) => {
   return (
@@ -41,7 +43,8 @@ const OrderList = ({ order, removeOrder, editOrder }) => {
 };
 
 export default function UseReducer() {
-  const [order, setOrder] = useState([]);
+  // const [order, setOrder] = useState([]);
+  const [order, dispatch] = useReducer(foodReducer, []);
   const [updatingOrder, setUpdatingOrder] = useState(null);
 
   const inputName = useRef();
@@ -54,22 +57,42 @@ export default function UseReducer() {
   };
 
   const addOrder = () => {
-    setOrder((order) => [...order, getPayload()]);
+    console.log('add order');
+    // setOrder((order) => [...order, getPayload()]);
+    dispatch({
+      type: FoodAction.add,
+      payload: {
+        name: inputName.current.value,
+        quantity: inputQty.current.value,
+      },
+    });
     clearForm();
   };
 
   const updateOrder = () => {
-    const newOrder = [...order];
-    newOrder[updatingOrder] = {
-      ...newOrder[updatingOrder],
-      ...getPayload(),
-    };
-    setOrder(newOrder);
+    // sebelum pake use Reducer
+    // const newOrder = [...order];
+    // newOrder[updatingOrder] = {
+    //   ...newOrder[updatingOrder],
+    //   ...getPayload(),
+    // };
+    // setOrder(newOrder);
+
+    // pake use reducer
+    dispatch({
+      type: FoodAction.update,
+      payload: {
+        name: inputName.current.value,
+        quantity: inputQty.current.value,
+        idx: updatingOrder,
+      },
+    });
     clearForm();
   };
 
   const removeOrder = (idx) => {
-    setOrder((order) => order.filter((o, i) => i !== idx));
+    // setOrder((order) => order.filter((o, i) => i !== idx));
+    dispatch({ type: FoodAction.remove, payload: idx });
   };
 
   const editOrder = (idx) => {
@@ -87,6 +110,7 @@ export default function UseReducer() {
   };
 
   useEffect(() => {
+    console.log(updatingOrder);
     setUpdatingOrder(null);
   }, [order]);
 

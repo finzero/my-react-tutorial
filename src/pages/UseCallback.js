@@ -1,12 +1,15 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { useMemo } from 'react';
 import { useState } from 'react';
 
-const Display = ({ name, value }) => {
+const Display = ({ name, value, themeDescription }) => {
   console.count(`Display ${name} rerender`);
   return (
     <div className="card">
       <div className="card-body">{value}</div>
+      {themeDescription && <div>{themeDescription()}</div>}
     </div>
   );
 };
@@ -20,9 +23,10 @@ const Button = ({ label, onClick }) => {
   );
 };
 
-export default function UseMemo() {
+export default function UseCallback() {
   const [theme, setTheme] = useState('light');
   const [counter, setCounter] = useState(0);
+  const [toggleName, setToggleName] = useState('Toggle Theme');
 
   const toggleTheme = () =>
     setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
@@ -31,16 +35,21 @@ export default function UseMemo() {
     setCounter((counter) => counter + 1);
   };
 
+  useEffect(() => {
+    // setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
+  }, []);
+
   const themeDescription = () => {
+    console.log('theme description is rerendered');
     let i = 1000000000;
     while (i !== 0) i--;
-    return theme === 'light' ? 'theme is dark' : 'theme is light';
+    return theme === 'light' ? 'theme is light' : 'theme is dark';
   };
 
   return (
     <div>
-      <Display name="Theme" value={themeDescription()} />
-      <Button label={'Toggle Theme'} onClick={toggleTheme} />
+      <Display name="Theme" value={theme} themeDescription={themeDescription} />
+      <Button label={toggleName} onClick={toggleTheme} />
       <Display name="Counter" value={counter} />
       <Button label={'Add Counter'} onClick={addCounter} />
     </div>

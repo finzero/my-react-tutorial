@@ -22,6 +22,11 @@ export default function Sidebar() {
       text: 'Use Memo',
       isActive: false,
     },
+    {
+      link: 'use-callback',
+      text: 'Use Callback',
+      isActive: false,
+    },
   ]);
 
   const setActiveMenu = (propMenu) => {
