@@ -27,6 +27,11 @@ export default function Sidebar() {
       text: 'Use Callback',
       isActive: false,
     },
+    {
+      link: 'custom-hook',
+      text: 'Custom Hook',
+      isActive: false,
+    },
   ]);
 
   const setActiveMenu = (propMenu) => {

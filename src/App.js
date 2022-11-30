@@ -7,6 +7,7 @@ import UseReducer from './pages/UseReducer';
 import UseContext from './pages/UseContext';
 import UseMemo from './pages/UseMemo';
 import UseCallback from './pages/UseCallback';
+import CustomHook from './pages/CustomHook';
 
 function App() {
   const [toggle, setToggle] = useState(false);
@@ -25,6 +26,7 @@ function App() {
         <Route path="use-context" element={<UseContext />} />
         <Route path="use-memo" element={<UseMemo />} />
         <Route path="use-callback" element={<UseCallback />} />
+        <Route path="custom-hook" element={<CustomHook />} />
       </Routes>
     </Layout>
   );
