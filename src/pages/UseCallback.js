@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { useMemo } from 'react';
 import { useState } from 'react';
 
-const Display = ({ name, value, themeDescription }) => {
+const Display = React.memo(({ name, value, themeDescription }) => {
   console.count(`Display ${name} rerender`);
   return (
     <div className="card">
@@ -12,7 +12,7 @@ const Display = ({ name, value, themeDescription }) => {
       {themeDescription && <div>{themeDescription()}</div>}
     </div>
   );
-};
+});
 
 const Button = ({ label, onClick }) => {
   console.count(`button ${label} rerender`);
@@ -39,12 +39,20 @@ export default function UseCallback() {
     // setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
   }, []);
 
-  const themeDescription = () => {
+  const themeDescription = useCallback(() => {
     console.log('theme description is rerendered');
     let i = 1000000000;
     while (i !== 0) i--;
     return theme === 'light' ? 'theme is light' : 'theme is dark';
-  };
+  }, [theme]);
+
+  /* render 1 : call function => light > cache function () => {
+    console.log('theme description is rerendered');
+    let i = 1000000000;
+    while (i !== 0) i--;
+    return theme === 'light' ? 'theme is light' : 'theme is dark';  
+  } */
+  // render 2 : theme = previous theme > return function from cache
 
   return (
     <div>
