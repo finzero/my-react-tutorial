@@ -1,17 +1,34 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from '../features/authSlice';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
 
+  const dispatch = useDispatch();
+  const { isAuthenticated, username } = useSelector((state) => state.auth);
+
   return (
     <div>
-      <button
-        className="btn btn-sm btn-primary"
-        onClick={() => setIsLogin(!isLogin)}
-      >
-        {isLogin ? 'Logout' : 'Login'}
-      </button>
-      <div>You're {isLogin ? 'Logged In' : 'Not Login'}</div>
+      {!isAuthenticated ? (
+        <button
+          className="btn btn-sm btn-primary"
+          onClick={() => dispatch(login())}
+        >
+          Login
+        </button>
+      ) : (
+        <button
+          className="btn btn-sm btn-primary"
+          onClick={() => dispatch(logout())}
+        >
+          Logout
+        </button>
+      )}
+
+      <div>
+        You're {isAuthenticated ? 'Logged In' : 'Not Login'} {username}
+      </div>
     </div>
   );
 };
