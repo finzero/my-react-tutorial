@@ -8,6 +8,11 @@ export default function Sidebar() {
 
   const [menu, setMenu] = useState([
     {
+      link: 'login',
+      text: 'Login',
+      isActive: true,
+    },
+    {
       link: 'use-reducer',
       text: 'Use Reducer',
       isActive: false,

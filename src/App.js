@@ -9,20 +9,15 @@ import UseMemo from './pages/UseMemo';
 import UseCallback from './pages/UseCallback';
 import CustomHook from './pages/CustomHook';
 import Debounce from './pages/Debounce';
+import Login from './pages/Login';
 
 function App() {
   const [toggle, setToggle] = useState(false);
 
-  const toggleRerender = () => {
-    setToggle((toggle) => !toggle);
-  };
-
   return (
     <Layout>
-      {/* <button className="btn btn-sm btn-primary" onClick={toggleRerender}>
-        Re-render
-      </button> */}
       <Routes>
+        <Route path="login" element={<Login />} />
         <Route path="use-reducer" element={<UseReducer />} />
         <Route path="use-context" element={<UseContext />} />
         <Route path="use-memo" element={<UseMemo />} />
