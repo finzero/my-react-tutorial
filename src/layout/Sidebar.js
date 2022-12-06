@@ -28,8 +28,8 @@ export default function Sidebar() {
       isActive: false,
     },
     {
-      link: 'custom-hook',
-      text: 'Custom Hook',
+      link: 'debounce',
+      text: 'Debounce',
       isActive: false,
     },
   ]);

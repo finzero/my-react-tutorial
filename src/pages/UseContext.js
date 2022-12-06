@@ -11,6 +11,8 @@ function UseContext() {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
+  const contextValue = { theme, setTheme };
+
   return (
     <div className={theme}>
       <button onClick={toggleTheme}>Toggle Theme</button>
@@ -23,7 +25,7 @@ function UseContext() {
         </li>
         <li>I want grandchild component render the theme props</li>
       </ol>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={contextValue}>
         <Parent />
         <RandomComp />
       </ThemeContext.Provider>
