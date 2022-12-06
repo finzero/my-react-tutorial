@@ -1,13 +1,52 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 
 const Debounce = () => {
   const [data, setData] = useState({});
+  const [term, setTerm] = useState('');
+
+  let debounce;
+
+  // useEffect(() => {
+  //   debounce = setTimeout(() => {
+  //     fetch(`https://api.agify.io/?name=${term}`)
+  //       .then((res) => res.json())
+  //       .then((response) => {
+  //         setData(response);
+  //       });
+  //   }, 500);
+
+  //   return () => {
+  //     clearTimeout(debounce);
+  //   };
+  // }, [term]);
+
+  // const searchAgify = (term) => {
+  //   clearTimeout(debounce);
+  //   debounce = setTimeout(() => {
+  //     fetch(`https://api.agify.io/?name=${term}`)
+  //       .then((res) => res.json())
+  //       .then((response) => {
+  //         setData(response);
+  //       });
+  //   }, 3000);
+  // };
+
   const searchAgify = (term) => {
-    fetch(`https://api.agify.io/?name=${term}`)
-      .then((res) => res.json())
-      .then((response) => {
-        setData(response);
-      });
+    typing(term).then((searchTerm) => {
+      fetch(`https://api.agify.io/?name=${searchTerm}`)
+        .then((res) => res.json())
+        .then((response) => {
+          setData(response);
+        });
+    });
+  };
+
+  const typing = (searchTerm) => {
+    clearTimeout(debounce);
+    return new Promise((resolve) => {
+      debounce = setTimeout(() => resolve(searchTerm), 2000);
+    });
   };
 
   return (
