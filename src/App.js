@@ -11,6 +11,7 @@ import CustomHook from './pages/CustomHook';
 import Debounce from './pages/Debounce';
 import Login from './pages/Login';
 import { useSelector } from 'react-redux';
+import ExtraReducer from './pages/ExtraReducer';
 
 const PrivateComponent = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -32,6 +33,7 @@ function App() {
           <Route path="use-callback" element={<UseCallback />} />
           <Route path="custom-hook" element={<CustomHook />} />
           <Route path="debounce" element={<Debounce />} />
+          <Route path="extra-reducer" element={<ExtraReducer />} />
         </Route>
       </Routes>
     </Layout>

@@ -22,7 +22,6 @@ const Login = () => {
     const movie = [{ title: 'kura2 ninja', rating: 20 }];
 
     dispatch(login(response));
-    dispatch(setMovie(movie));
   };
 
   return (

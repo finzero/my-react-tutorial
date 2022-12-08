@@ -22,6 +22,11 @@ const authSlice = createSlice({
       return (state = initialState);
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase('movie/setMovie', (state) => {
+      console.log('i got called');
+    });
+  },
 });
 
 export const { login, logout } = authSlice.actions;

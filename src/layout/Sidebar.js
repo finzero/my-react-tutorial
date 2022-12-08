@@ -45,6 +45,12 @@ export default function Sidebar() {
       isActive: false,
       isProtected: true,
     },
+    {
+      link: 'extra-reducer',
+      text: 'Extra Reducer',
+      isActive: false,
+      isProtected: true,
+    },
   ]);
 
   const setActiveMenu = (propMenu) => {
