@@ -51,6 +51,12 @@ export default function Sidebar() {
       isActive: false,
       isProtected: true,
     },
+    {
+      link: 'layout',
+      text: 'Layout',
+      isActive: false,
+      isProtected: true,
+    },
   ]);
 
   const setActiveMenu = (propMenu) => {

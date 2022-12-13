@@ -12,6 +12,7 @@ import Debounce from './pages/Debounce';
 import Login from './pages/Login';
 import { useSelector } from 'react-redux';
 import ExtraReducer from './pages/ExtraReducer';
+import LayoutTwitter from './pages/Layout';
 
 const PrivateComponent = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -35,6 +36,7 @@ function App() {
           <Route path="debounce" element={<Debounce />} />
           <Route path="extra-reducer" element={<ExtraReducer />} />
         </Route>
+        <Route path="layout" element={<LayoutTwitter />} />
       </Routes>
     </Layout>
   );

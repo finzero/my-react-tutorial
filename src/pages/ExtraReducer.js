@@ -19,7 +19,7 @@ const ExtraReducer = () => {
     const term = searchRef.current.value;
     if (term) {
       dispatch(fetching());
-      fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${term}`)
+      fetch(`http://www.omdbapi.com/gql`)
         .then((rawRes) => rawRes.json())
         .then((response) => {
           if (response.Error) {

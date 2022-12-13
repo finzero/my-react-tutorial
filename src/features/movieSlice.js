@@ -20,13 +20,25 @@ const movieSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetching, (state) => {
-        console.log('do something on movie fetching');
+        // console.log('do something on movie fetching');
+        return {
+          ...state,
+          isFetching: true,
+        };
       })
       .addCase(fetchSuccess, (state) => {
-        console.log('do something on success fetch');
+        // console.log('do something on success fetch');
+        return {
+          ...state,
+          isFetching: false,
+        };
       })
       .addCase(fetchError, (state) => {
-        console.log('do something on error fetch');
+        // console.log('do something on error fetch');
+        return {
+          ...state,
+          isError: true,
+        };
       });
   },
 });
