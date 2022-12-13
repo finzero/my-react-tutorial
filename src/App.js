@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import { useSelector } from 'react-redux';
 import ExtraReducer from './pages/ExtraReducer';
 import LayoutTwitter from './pages/Layout';
+import Counter from './pages/Counter';
 
 const PrivateComponent = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -27,15 +28,16 @@ function App() {
     <Layout>
       <Routes>
         <Route path="login" element={<Login />} />
-        <Route element={<PrivateComponent />}>
-          <Route path="use-reducer" element={<UseReducer />} />
-          <Route path="use-context" element={<UseContext />} />
-          <Route path="use-memo" element={<UseMemo />} />
-          <Route path="use-callback" element={<UseCallback />} />
-          <Route path="custom-hook" element={<CustomHook />} />
-          <Route path="debounce" element={<Debounce />} />
-          <Route path="extra-reducer" element={<ExtraReducer />} />
-        </Route>
+        {/* <Route element={<PrivateComponent />}> */}
+        <Route path="use-reducer" element={<UseReducer />} />
+        <Route path="use-context" element={<UseContext />} />
+        <Route path="use-memo" element={<UseMemo />} />
+        <Route path="use-callback" element={<UseCallback />} />
+        <Route path="custom-hook" element={<CustomHook />} />
+        <Route path="debounce" element={<Debounce />} />
+        <Route path="extra-reducer" element={<ExtraReducer />} />
+        <Route path="unit-test" element={<Counter />} />
+        {/* </Route> */}
         <Route path="layout" element={<LayoutTwitter />} />
       </Routes>
     </Layout>

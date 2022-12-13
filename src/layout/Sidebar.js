@@ -57,6 +57,12 @@ export default function Sidebar() {
       isActive: false,
       isProtected: true,
     },
+    {
+      link: 'unit-test',
+      text: 'Unit Test',
+      isActive: false,
+      isProtected: true,
+    },
   ]);
 
   const setActiveMenu = (propMenu) => {
@@ -77,17 +83,18 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       {menu.map(
-        (m) =>
-          (!m.isProtected || isAuthenticated) && (
-            <Link
-              key={m.link}
-              className={'menu-item' + (m.isActive ? ' active' : '')}
-              onClick={() => setActiveMenu(m)}
-              to={m.link}
-            >
-              {m.isActive && <img src={rightCarret} />} {m.text}
-            </Link>
-          )
+        (m) => (
+          // (!m.isProtected || isAuthenticated) && (
+          <Link
+            key={m.link}
+            className={'menu-item' + (m.isActive ? ' active' : '')}
+            onClick={() => setActiveMenu(m)}
+            to={m.link}
+          >
+            {m.isActive && <img src={rightCarret} />} {m.text}
+          </Link>
+        )
+        // )
       )}
     </div>
   );
